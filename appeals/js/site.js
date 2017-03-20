@@ -48,7 +48,7 @@ function init(){
             html='<div id="'+d+'" class="col-md-12"><h3>'+d+'</h3><button id="'+d+'update">Update</button></div>';
             $('#appeals').append(html);
             $('#'+d+'update').on('click',function(){
-                var url = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+d+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on';
+                var url = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+d+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on&force=on';
                 var appealCall = $.ajax({ 
                     type: 'GET', 
                     url: url,

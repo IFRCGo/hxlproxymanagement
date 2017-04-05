@@ -57,7 +57,7 @@ function init(){
                 $.when(appealCall).then(function(appealArgs){
                     var data = hxlProxyToJSON(appealArgs);
                     data.forEach(function(d){
-                        var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+encodeURIComponent(d['#meta+url']);
+                        var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+encodeURIComponent(d['#meta+url']+'&force=on');
                         console.log(url);
                         $.ajax({ 
                             type: 'GET', 

@@ -8,7 +8,7 @@ function hxlProxyToJSON(input,headers){
                 var key = parts[0]
                 if(parts.length>1){
                     var atts = parts.splice(1,parts.length);
-                    atts.sort();                    
+                    atts.sort();
                     atts.forEach(function(att){
                         key +='+'+att
                     });
@@ -29,8 +29,8 @@ function hxlProxyToJSON(input,headers){
 function init(){
     var url = 'https://proxy.hxlstandard.org/data.json?url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%23gid%3D0&strip-headers=on&force=on';
 
-    var topLevelCall = $.ajax({ 
-        type: 'GET', 
+    var topLevelCall = $.ajax({
+        type: 'GET',
         url: url,
         dataType: 'json',
     });
@@ -49,18 +49,18 @@ function init(){
             $('#appeals').append(html);
             $('#'+d+'update').on('click',function(){
                 var url = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+d+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on&force=on';
-                var appealCall = $.ajax({ 
-                    type: 'GET', 
+                var appealCall = $.ajax({
+                    type: 'GET',
                     url: url,
                     dataType: 'json',
                 });
                 $.when(appealCall).then(function(appealArgs){
                     var data = hxlProxyToJSON(appealArgs);
                     data.forEach(function(d){
-                        var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+encodeURIComponent(d['#meta+url']+'&force=on');
+                        var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+encodeURIComponent(d['#meta+url'])+'&force=on';
                         console.log(url);
-                        $.ajax({ 
-                            type: 'GET', 
+                        $.ajax({
+                            type: 'GET',
                             url: url,
                             dataType: 'json',
                             success: function(){
@@ -77,6 +77,6 @@ function init(){
         });
         $('#loadingmodal').modal('hide');
     });
-    
+
 }
 init();

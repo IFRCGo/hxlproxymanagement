@@ -57,8 +57,11 @@ function init(){
                 $.when(appealCall).then(function(appealArgs){
                     var data = hxlProxyToJSON(appealArgs);
                     data.forEach(function(d){
-                        var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+encodeURIComponent(d['#meta+url'])+'&force=on';
-                        console.log(url);
+                        if(d['#meta+feature']=='contacts'){
+                            var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter02=select&select-reverse01=on&select-query01-01=%23date%2Bstart%3E'+date+'&filter01=select&select-reverse02=on&select-query02-01=%23date%2Bend%3C'+date+'&url='+encodeURIComponent(d['#meta+url'])+'&force=on';
+                        } else {
+                            var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+encodeURIComponent(d['#meta+url'])+'&force=on';
+                        }
                         $.ajax({
                             type: 'GET',
                             url: url,
@@ -79,4 +82,17 @@ function init(){
     });
 
 }
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+if(dd<10) {
+    dd='0'+dd
+}
+if(mm<10) {
+    mm='0'+mm
+}
+var date = yyyy + '-' + mm + '-' + dd;
+
 init();
